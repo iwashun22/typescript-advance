@@ -3,6 +3,7 @@ import { squareNumber, addItemToBox, cardBox, Card } from "./module/generics";
 import "./module/clean-compile-enum";
 import "./module/interface";
 import "./module/class";
+import "./module/class-protected";
 
 handleReadonlyArray(["one", "two"]);
 
