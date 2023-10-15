@@ -12,7 +12,7 @@ const squareNumber: DefineFunction<number, number> = (arg) => {
 }
 squareNumber(2);
 
-
+// not really a good example
 type Box<Type> = Array<Type>
 
 type Card = {

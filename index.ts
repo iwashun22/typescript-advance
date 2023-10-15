@@ -4,6 +4,7 @@ import "./module/clean-compile-enum";
 import "./module/interface";
 import "./module/class";
 import "./module/class-protected";
+import "./module/abstract-class";
 
 handleReadonlyArray(["one", "two"]);
 
