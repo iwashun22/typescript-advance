@@ -37,3 +37,31 @@ const myRequest: XHRMethods & Methods = {
     }
   }
 }
+
+// Key mapping
+type Features = {
+  darkmode(): void,
+  newProfile(): void,
+}
+type FeatureOptions<Type> = {
+  [key in keyof Type]: boolean // Mapping via a keyof
+}
+const options: FeatureOptions<Features> = {
+  darkmode: true,
+  newProfile: false,
+}
+
+// Remapping via "as"
+interface Person {
+  name: string,
+  age: number,
+  career: string
+}
+type Getters<Type> = {
+  [key in keyof Type as `get${Capitalize<string & key>}`]: () => Type[key];
+}
+const getPerson: Getters<Person> = {
+  getName: () => "",
+  getAge: () => 0,
+  getCareer: () => "",
+}
