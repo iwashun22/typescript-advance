@@ -66,7 +66,7 @@ eval("\nvar ShirtSize;\n(function (ShirtSize) {\n    ShirtSize[\"SMALL\"] = \"s\
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Collection: () => (/* binding */ Collection)\n/* harmony export */ });\nvar _a = {\n    clothes: \"clothes\",\n    book: \"book\",\n}, clothes = _a.clothes, book = _a.book;\nvar Collection = (function () {\n    function Collection(collectionType, items) {\n        if (items === void 0) { items = []; }\n        this.store = [];\n        this.store = this.store.concat(items);\n        this.collectionType = collectionType;\n    }\n    Collection.prototype.addCollectionItem = function (item) {\n        this.store.push(item);\n    };\n    return Collection;\n}());\n\n\n\n//# sourceURL=webpack://typesript-advance/./module/generic-class.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Collection: () => (/* binding */ Collection)\n/* harmony export */ });\nvar Collection = (function () {\n    function Collection(collectionType, items) {\n        if (items === void 0) { items = []; }\n        this.store = [];\n        this.store = this.store.concat(items);\n        this.collectionType = collectionType;\n    }\n    Collection.prototype.addCollectionItem = function (item) {\n        this.store.push(item);\n    };\n    return Collection;\n}());\n\n\n\n//# sourceURL=webpack://typesript-advance/./module/generic-class.ts?");
 
 /***/ }),
 

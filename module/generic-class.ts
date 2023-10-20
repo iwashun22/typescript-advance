@@ -11,14 +11,12 @@ interface Clothes {
   price: number
 }
 
-type CollectionTypesName = "clothes" | "book";
-const {clothes, book}: { [key: string]: CollectionTypesName } = {
-  clothes: "clothes",
-  book: "book",
+type CollectionTypes = {
+  "clothes": Clothes,
+  "book": Book
 };
-type IndicateCollectionType<T extends CollectionTypesName> = T extends typeof clothes ? Clothes : (T extends typeof book ? Book : never);
 
-class Collection<T extends CollectionTypesName, U extends IndicateCollectionType<T>> {
+class Collection<T extends keyof CollectionTypes, U extends CollectionTypes[T]> {
   public store: U[] = [];
   public readonly collectionType: T;
   constructor(collectionType: T, items: U[] = []) {
