@@ -9,15 +9,15 @@ const check: SomeArgsOnlyBool = {
 }
 check.strict = "yes";
 
-type Methods = {
-  [key: string]: (...params: any[]) => any;
+type Methods<Keys extends string[]> = {
+  [key in Keys[number]]: (...params: any[]) => any;
 }
 type XHRMethods = {
   get(url: string): { status: number, data: JSON | Object | string },
   post<T extends Object>(url: string, data: T, token: { isExpired: boolean, csrf_token: string }): { status: number, data: T } | { status: number, error: Error }
 }
 
-const myRequest: XHRMethods & Methods = {
+const myRequest: XHRMethods & Methods<["getUser"]> = {
   get: (url) => {
     console.log("fetch", url);
     const data = [1,2,3].toString();
@@ -36,7 +36,7 @@ const myRequest: XHRMethods & Methods = {
       profile: { name: 'Frank', email: 'frank@gmail.com' }
     }
   }
-}
+};
 
 // Key mapping
 type Features = {

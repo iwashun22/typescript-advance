@@ -5,6 +5,7 @@ import "./module/interface";
 import "./module/class";
 import "./module/class-protected";
 import "./module/abstract-class";
+import { Collection } from './module/generic-class';
 
 handleReadonlyArray(["one", "two"]);
 
@@ -17,3 +18,13 @@ const newCard: Card = {
   expiryDate: new Date(Date.now() + threeYears)
 }
 addItemToBox(cardBox, newCard)
+
+const myBooks = new Collection("book");
+myBooks.addCollectionItem({ 
+  name: 'Be Water', 
+  author: 'Bruce Lee',
+  genre: 'IDK',
+})
+
+const myClothes = new Collection("clothes");
+console.log(myClothes.collectionType);

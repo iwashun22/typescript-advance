@@ -37,3 +37,8 @@ console.log(naruto.getPrintedPlace);
 
 naruto.setOriginalPrintedPlace();
 console.log(naruto.getPrintedPlace);
+
+export {
+  Manga,
+  Book
+}

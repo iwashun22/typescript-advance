@@ -1,3 +1,39 @@
+interface Item {
+  product: string,
+  rate: number,
+  price: number,
+  tags?: string[]
+}
+// Generics <Type>
+// with function
+function getHighestRateItem<T extends { rate: number }>(items: T[]): T {
+  items = items.sort((a, b) => b.rate - a.rate);
+  // get high-rated item
+  return items[0];
+}
+// with arrow function
+const getCheapestItem = <T extends { price: number }>(items: T[]): T => {
+  items = items.sort((a, b) => a.price - b.price);
+  // get cheapest item
+  return items[0];
+}
+const items: Item[] = [
+  { rate: 3.6, product: 'Basketball shoes', price: 50, tags: ["shoes", "cheap"] },
+  { rate: 4.6, product: 'headband', price: 80 }
+]
+console.log(getHighestRateItem(items));
+console.log(getCheapestItem(items));
+
+function getProperty<Type, Key extends keyof Type>(object: Type, key: Key): Type[Key] {
+  return object[key];
+}
+const myObject = { a: 1, b: "2", c: "cat", d: true };
+getProperty(myObject, "a");
+// FIXME: 
+// # Argument of type '"m"' is not assignable to parameter 
+// # of type '"c" | "a" | "b" | "d"'.
+// getProperty(myObject, "m");
+
 export type Letters = "a" | "b" | "c" | "d";
 
 type RemoveC<TType> = TType extends 'c' ? never : TType;
@@ -33,5 +69,6 @@ export {
   squareNumber,
   addItemToBox,
   cardBox,
-  Card
+  Card,
+  getProperty
 }
