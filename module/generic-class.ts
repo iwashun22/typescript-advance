@@ -1,4 +1,4 @@
-type Book = {
+interface Book {
   name: string,
   author: string,
   genre: string,
