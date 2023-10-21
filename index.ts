@@ -6,6 +6,7 @@ import "./module/class";
 import "./module/class-protected";
 import "./module/abstract-class";
 import { Collection } from './module/generic-class';
+import "./module/narrowing";
 
 handleReadonlyArray(["one", "two"]);
 
