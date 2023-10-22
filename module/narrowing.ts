@@ -50,6 +50,7 @@ interface User {
 
 interface Admin extends User {
   isAdmin: boolean,
+  permissions: Array<string>
 }
 
 function isAdminAccount(user: User | Admin): boolean {
@@ -65,3 +66,86 @@ console.log(
   "isAdmin:",
   isAdminAccount({name: 'Anthony', email: 'anthony_user99@gmail.com'})
 );
+
+// * instanceof narrowing
+// memo: useful for most values that can be constructed with new(classes). 
+function logValue(x: Date | string): void {
+  if(x instanceof Date) {
+    console.log(x.toUTCString());
+  } else {
+    console.log(x);
+  }
+  return;
+}
+
+// * using type predicates
+type Bird = { fly: () => void }
+type Fish = { swim: () => void }
+const myPet: { bird: Bird, fish: Fish } = {
+  bird: {
+    fly: () => {
+      console.log(
+        "A bird is flying\n",
+        "flap flap..."
+      );
+    }
+  },
+  fish: {
+    swim: () => {
+      console.log(
+        "A fish is swimming\n",
+        "blup blup..."
+      );
+    }
+  }
+}
+
+// memo: when true, it will return Fish type 
+function isFish(pet: Bird | Fish): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
+console.log("is a fish?", isFish(myPet.fish));
+
+function getFood(pet: Bird | Fish): string {
+  if(isFish(pet)) {
+    pet.swim();
+    return "fish food"
+  }
+  pet.fly();
+  return "bird food"
+}
+console.log(getFood(myPet.bird));
+
+// * discriminated union
+type Circle = {
+  kind: "circle",
+  radius: number,
+}
+type Square = {
+  kind: "square",
+  side: number,
+}
+type Rectangle = {
+  kind: "rectangle",
+  length: number,
+  width: number,
+}
+type Shape = Circle | Square | Rectangle;
+
+function getSurfaceArea(shape: Shape): number {
+  switch(shape.kind) {
+    case "circle":
+      return Math.PI * (shape.radius ** 2);
+    case "square":
+      return shape.side ** 2;
+    case "rectangle":
+      return shape.length * shape.width;
+    
+    // ! raise a type error
+    // memo: when there's any case hasn't been handled. 
+    // The never type is assignable to every type, but no type is assignable to never
+    default:
+      const _exhaustiveCheck: never = shape;
+      return _exhaustiveCheck;
+  }
+}

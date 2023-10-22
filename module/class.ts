@@ -7,7 +7,7 @@ enum state{
 }
 
 
-class User {
+export class User {
   private _password: string;
   private _email: string | null = null;
   private _age: number | null;
